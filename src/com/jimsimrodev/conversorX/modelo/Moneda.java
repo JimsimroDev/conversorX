@@ -1,4 +1,4 @@
-package com.jimsimrodev.conversorX;
+package com.jimsimrodev.conversorX.modelo;
 
 public record Moneda(String base_code,
                      String target_code,

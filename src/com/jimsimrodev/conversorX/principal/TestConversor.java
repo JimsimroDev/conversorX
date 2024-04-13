@@ -1,12 +1,11 @@
 package com.jimsimrodev.conversorX.principal;
 
-import com.jimsimrodev.conversorX.Moneda;
+import com.jimsimrodev.conversorX.modelo.Moneda;
 import com.jimsimrodev.conversorX.modelo.ApiConversonMoneda;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.SQLOutput;
 
 public class TestConversor {
     public static void main(String[] args) {

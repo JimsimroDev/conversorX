@@ -1,7 +1,6 @@
 package com.jimsimrodev.conversorX.modelo;
 
 import com.google.gson.Gson;
-import com.jimsimrodev.conversorX.Moneda;
 
 import java.net.URI;
 import java.net.http.HttpClient;
