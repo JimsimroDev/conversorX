@@ -9,7 +9,8 @@ public record Moneda(String base_code,
 
     public String cantidaMonedas(double cantidad){
         double total = cantidad * Double.parseDouble(conversion_rate);
-        return "El total es de " + total + target_code;
+        //¡Hecho! Ahora [cantidad ingresada] se convierte en [cantidad convertida] en [moneda deseada].
+        return "¡Hecho! Ahora " + cantidad +base_code + " Se convierten en "+ total + target_code;
     }
 
 

@@ -7,7 +7,9 @@ import com.jimsimrodev.conversorX.modelo.ApiConversonMoneda;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TestConversor {
@@ -19,7 +21,8 @@ public class TestConversor {
         menu.append("|   1   | dolar americano USD a peso colombiano COP     |\n");
         menu.append("|   2   | peso colombiano COP a dolar americano USD     |\n");
         menu.append("|   3   | peso boliviano BOB a Real brasileño BRL       |\n");
-        menu.append("|   4   | salir                                         |");
+        menu.append("|   4   | Consultar tu Historial de busqueda            |\n");
+        menu.append("|   5   | Salir                                         |");
 
         System.out.println("+-------------------------------------------------------+");
         System.out.print("|");
@@ -62,6 +65,8 @@ BRL - Real brasileño
 CLP - Peso chileno
 COP - Peso colombiano
 USD - Dólar estadounidense  * */
+        List<String> historialDeCosulta = new ArrayList<>();
+        List<Moneda> historialDeMonedas = new ArrayList<>();
 
         while (true) {
             titulo();
@@ -75,30 +80,42 @@ USD - Dólar estadounidense  * */
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
+                    historialDeMonedas.add(monedaConvertida);
+                    historialDeCosulta.add(monedaConvertida.cantidaMonedas(cantidad));
+
                 }else if("2".equalsIgnoreCase(opcion)){
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(COP, USD);
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
+                    historialDeMonedas.add(monedaConvertida);
+                    historialDeCosulta.add(monedaConvertida.cantidaMonedas(cantidad));
+
                 }else if("3".equalsIgnoreCase(opcion)){
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(BOB, BRL);
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
+                    
+                    historialDeMonedas.add(monedaConvertida);
+                    historialDeCosulta.add(monedaConvertida.cantidaMonedas(cantidad));
+                }else if("4".equalsIgnoreCase(opcion)){
+                    historialDeMonedas.forEach(System.out::println);
+                    historialDeCosulta.forEach((x) -> System.out.println(x.toString()));
                 }
 
             } catch (IOException | NumberFormatException e) {
                 System.out.println("No se encuentra esa moneda " + e.getMessage());
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Finalizacion la aplicacion");
+                System.out.println("Finalizacion de la aplicacion");
             }
-            if("4".equalsIgnoreCase(opcion)){
+            if("5".equalsIgnoreCase(opcion)){
                 break;
             }
         }
-        System.out.println("Hasta pronto gracias por utilizar el programa...");
+        System.out.println("Gracias por utilizar el programa Hasta pronto ...");
     }
     public static void main(String[] args) {
         TestConversor iniciar = new TestConversor();
