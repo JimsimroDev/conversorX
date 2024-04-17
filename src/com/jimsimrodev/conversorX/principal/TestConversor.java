@@ -15,14 +15,15 @@ public class TestConversor {
     private static final String DIVLINE = "+-------+-------+-------+-------+-------+-------+-------+";
 
     public void titulo(){
-        String titulo = "CONVERSOR DE MONEDA";
         StringBuilder menu = new  StringBuilder();
+        String titulo = "CONVERSOR DE MONEDA";
         menu.append("|   1   | dolar americano USD a peso colombiano COP     |\n");
         menu.append("|   2   | peso colombiano COP a dolar americano USD     |\n");
         menu.append("|   3   | peso boliviano BOB a Real brasileño BRL       |\n");
         menu.append("|   4   | Consultar tu Historial de busqueda            |\n");
         menu.append("|   5   | Codigos que se admiten                        |\n");
-        menu.append("|   5   | Salir                                         |");
+        menu.append("|   6   | Consular otras monedas                        |\n");
+        menu.append("|   7   | Salir                                         |");
 
         System.out.println("+-------------------------------------------------------+");
         System.out.print("|");
@@ -47,8 +48,11 @@ public class TestConversor {
         System.out.print("¿Que desea hacer ?: ");
     }
 
-    public String fecha(String fecha, String hora){
-        return  String.valueOf(fecha) +" a las: "+ String.valueOf(hora);
+    public String capturarFehcaHora(){
+        LocalDate ld = LocalDate.now();
+        LocalTime hr = LocalTime.now();
+        String fechaYHora = String.valueOf(ld) + " a las: " + String.valueOf(hr);
+        return fechaYHora;
     }
 
     public void run(){
@@ -62,39 +66,30 @@ public class TestConversor {
         String BRL = "BRL";
         double cantidad = 0;
 
-        /*
-        * ARS - Peso argentino
-BOB - Boliviano boliviano
-BRL - Real brasileño
-CLP - Peso chileno
-COP - Peso colombiano
-USD - Dólar estadounidense  * */
         Map<String, String> historial = new HashMap<>();
         List<Moneda> historialDeMonedas = new ArrayList<>();
-
-
 
         while (true) {
             titulo();
             try {
-                // System.out.println(menu);
                 opcion = in.readLine();
 
                 if ("1".equalsIgnoreCase(opcion)) {
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(USD, COP);
-                    LocalDate ld = LocalDate.now();
-                    LocalTime hr = LocalTime.now();
+                    capturarFehcaHora();
 
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
-                    historial.put(monedaConvertida.cantidaMonedas(cantidad),fecha(String.valueOf(ld),String.valueOf(hr)));
+                    historial.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
                     historialDeMonedas.add(monedaConvertida);
 
                 }else if("2".equalsIgnoreCase(opcion)){
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(COP, USD);
+                    capturarFehcaHora();
+
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
@@ -103,16 +98,19 @@ USD - Dólar estadounidense  * */
                 }else if("3".equalsIgnoreCase(opcion)){
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(BOB, BRL);
+                    capturarFehcaHora();
+
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
+                    historial.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
 
                     historialDeMonedas.add(monedaConvertida);
                 }else if("4".equalsIgnoreCase(opcion)){
                     System.out.println(DIVLINE);
-                    System.out.println("Historial");
+                    System.out.println("| Historial de las monedas consultadas |");
                     historial.forEach((k,v) -> System.out.println(k +" Esta consulta se realizo el " +  v.toString()));
-                    //historialDeMonedas.forEach(System.out::println);
-                  //  historialDeCosulta.forEach((x) -> System.out.println(x.toString()));
+                    //  historialDeCosulta.forEach((x) -> System.out.println(x.toString()));
+
                 }else if("5".equalsIgnoreCase(opcion)){
                     //conversorModeda.mostrarCodigosAdminitod();
                     Moneda  mo = conversorModeda.mostrarCodigosAdminitod();
@@ -125,11 +123,12 @@ USD - Dólar estadounidense  * */
                     System.out.println("Ingrese la el codigo de la moneda a la que quiere convertir");
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(moneda, moneda1);
+
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
-                    LocalDate ld = LocalDate.now();
-                    LocalTime hr = LocalTime.now();
-                    historial.put(monedaConvertida.cantidaMonedas(cantidad),fecha(String.valueOf(ld),String.valueOf(hr)));
+                    capturarFehcaHora();
+
+                    historial.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
                     historialDeMonedas.add(monedaConvertida);
 
                 }
