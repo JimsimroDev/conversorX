@@ -13,7 +13,7 @@ public record Moneda(String base_code,
 
         public String cantidaMonedas(double cantidad) {
             double total = cantidad * Double.parseDouble(conversion_rate);
-            return "¡Hecho! Ahora " + cantidad +" "+ base_code + " Equivalen a " + total +" "+ target_code;
+            return "\n¡Hecho! Ahora " + cantidad +" "+ base_code + " Equivalen a " + total +" "+ target_code;
         }
 
         public void codes(){
