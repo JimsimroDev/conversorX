@@ -8,9 +8,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ApiConversonMoneda {
+    MiApiKey key = new MiApiKey();
 
     public Moneda mostrarCodigosAdminitod(){
-        URI direccion = URI.create("https://v6.exchangerate-api.com/v6/c0fd0e82fc4c929969a77de5/codes");
+        URI direccion = URI.create("https://v6.exchangerate-api.com/v6/"+key.getApiKey()+"/codes");
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(direccion)
@@ -27,7 +28,7 @@ public class ApiConversonMoneda {
     }
 
     public Moneda escojerMoneda(String moneda, String moneda1){
-        URI url = URI.create("https://v6.exchangerate-api.com/v6/c0fd0e82fc4c929969a77de5/pair/"+moneda+"/"+moneda1+"/");
+        URI url = URI.create("https://v6.exchangerate-api.com/v6/"+key.getApiKey()+"/pair/"+moneda+"/"+moneda1+"/");
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(url)
