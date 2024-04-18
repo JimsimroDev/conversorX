@@ -68,13 +68,15 @@ public class TestConversor {
 
         Map<String, String> historial = new HashMap<>();
         List<Moneda> historialDeMonedas = new ArrayList<>();
+        Map<List, Map> historialde = new HashMap<>();
 
         while (true) {
             titulo();
             try {
                 opcion = in.readLine();
 
-                if ("1".equalsIgnoreCase(opcion)) {
+                switch(opcion){
+                    case "1" ->{
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(USD, COP);
                     capturarFehcaHora();
@@ -85,7 +87,10 @@ public class TestConversor {
                     historial.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
                     historialDeMonedas.add(monedaConvertida);
 
-                }else if("2".equalsIgnoreCase(opcion)){
+                    historialde.put(historialDeMonedas, historial);
+                      break;
+                    }
+                    case "2" ->{
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(COP, USD);
                     capturarFehcaHora();
@@ -94,8 +99,9 @@ public class TestConversor {
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
                     historialDeMonedas.add(monedaConvertida);
-
-                }else if("3".equalsIgnoreCase(opcion)){
+                    break;
+                    }
+                    case "3" ->{
                     cantidad = cant.realizarConversion(in);
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(BOB, BRL);
                     capturarFehcaHora();
@@ -105,34 +111,45 @@ public class TestConversor {
                     historial.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
 
                     historialDeMonedas.add(monedaConvertida);
-                }else if("4".equalsIgnoreCase(opcion)){
+                        break;
+                    }
+                    case "4" -> {
                     System.out.println(DIVLINE);
                     System.out.println("| Historial de las monedas consultadas |");
                     historial.forEach((k,v) -> System.out.println(k +" Esta consulta se realizo el " +  v.toString()));
+                    historialde.forEach((k,v) -> System.out.println(k + " Esta consulta se realizo el " + v.toString()));
                     //  historialDeCosulta.forEach((x) -> System.out.println(x.toString()));
-
-                }else if("5".equalsIgnoreCase(opcion)){
+                        break;
+                    }
+                    case "5" ->{
                     //conversorModeda.mostrarCodigosAdminitod();
                     Moneda  mo = conversorModeda.mostrarCodigosAdminitod();
                     mo.codes();
-                }else if("6".equalsIgnoreCase(opcion)){
+                        break;
+                    }
+                    case "6" ->{
                     System.out.println("Ingrese la el codigo de la moneda que quiere convertir");
                     String moneda = in.readLine();
                     System.out.println("Ingrese la el codigo de la moneda a la que quiere convertir");
                     String moneda1 = in.readLine();
                     System.out.println("Ingrese la el codigo de la moneda a la que quiere convertir");
                     cantidad = cant.realizarConversion(in);
+                    capturarFehcaHora();
                     Moneda monedaConvertida = conversorModeda.escojerMoneda(moneda, moneda1);
 
                     System.out.println(monedaConvertida.toString());
                     System.out.println(monedaConvertida.cantidaMonedas(cantidad));
-                    capturarFehcaHora();
 
                     historial.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
                     historialDeMonedas.add(monedaConvertida);
-
+                        break;
+                    }
+                    case "7" -> {
+                        System.out.print("👌");
+                        break;
+                    }
+                    default -> System.out.println("Ingrse un numero entero valido");
                 }
-
             } catch (IOException | NumberFormatException e) {
                 System.out.println("No se encuentra esa moneda " + e.getMessage());
             } catch (RuntimeException e) {
