@@ -1,5 +1,4 @@
-
-<i class="fa-solid fa-coins"></i> # Conversor De Moneda
+ # Conversor De Moneda
 
 Este proyecto incluye un módulo de conversión de monedas que utiliza una API para realizar conversiones entre diferentes divisas. Esta funcionalidad está implementada en Java y permite a los usuarios realizar conversiones de manera fácil y rápida.
 
