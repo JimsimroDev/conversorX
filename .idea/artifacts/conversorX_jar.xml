@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="conversorX:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/conversorX_jar</output-path>
+    <root id="archive" name="conversorX.jar">
+      <element id="module-output" name="conversorX" />
+      <element id="extracted-dir" path="C:/descargas/gson-2.10.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

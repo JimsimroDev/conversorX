@@ -144,6 +144,7 @@ public class TestConversor {
                     }
                     case "7" -> {
                         System.out.print("👌");
+                        in.close();
                         break;
                     }
                     default -> System.out.println("Ingrse un numero entero valido");

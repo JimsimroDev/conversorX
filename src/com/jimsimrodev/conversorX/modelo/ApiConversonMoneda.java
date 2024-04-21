@@ -20,7 +20,6 @@ public class ApiConversonMoneda {
         try{
             HttpResponse<String> response = client
                     .send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
             return new Gson().fromJson(response.body(), Moneda.class);
         }catch (Exception e){
             throw new RuntimeException("No se encotro la moneda" + e.getMessage());
