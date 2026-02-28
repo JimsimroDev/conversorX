@@ -14,8 +14,8 @@ import java.util.*;
 public class TestConversor {
     private static final String DIVLINE = "+-------+-------+-------+-------+-------+-------+-------+";
 
-    public void titulo(){
-        StringBuilder menu = new  StringBuilder();
+    public void titulo() {
+        StringBuilder menu = new StringBuilder();
         String titulo = "CONVERSOR DE MONEDA";
         menu.append("|   1   | dolar americano USD a peso colombiano COP     |\n");
         menu.append("|   2   | peso colombiano COP a dolar americano USD     |\n");
@@ -29,13 +29,13 @@ public class TestConversor {
         System.out.print("|");
 
         int x = 1;
-        while (x < (DIVLINE.length() - titulo.length())/2){
+        while (x < (DIVLINE.length() - titulo.length()) / 2) {
             System.out.print(" ");
             x++;
         }
         System.out.print(titulo);
         x = x + titulo.length();
-        while(x < (DIVLINE.length()-1)){
+        while (x < (DIVLINE.length() - 1)) {
             System.out.print(" ");
             x++;
         }
@@ -48,14 +48,14 @@ public class TestConversor {
         System.out.print("¿Que desea hacer ?: ");
     }
 
-    public String capturarFehcaHora(){
+    public String capturarFehcaHora() {
         LocalDate ld = LocalDate.now();
         LocalTime hr = LocalTime.now();
-        String fechaYHora =  "\nEsta consulta se realizo el: " + String.valueOf(ld) + " a las: " + String.valueOf(hr);
+        String fechaYHora = "\nEsta consulta se realizo el: " + String.valueOf(ld) + " a las: " + String.valueOf(hr);
         return fechaYHora;
     }
 
-    public void run(){
+    public void run() {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         ApiConversonMoneda conversorModeda = new ApiConversonMoneda();
         ConvertidorDeMoneda cant = new ConvertidorDeMoneda();
@@ -74,20 +74,21 @@ public class TestConversor {
             try {
                 opcion = in.readLine();
 
-                switch(opcion){
-                    case "1" ->{
+                switch (opcion) {
+                    case "1" -> {
                         cantidad = cant.realizarConversion(in);
+                        System.out.println(conversorModeda.mostrarCodigosAdminitod());
                         Moneda monedaConvertida = conversorModeda.escojerMoneda(USD, COP);
                         capturarFehcaHora();
 
                         System.out.println(monedaConvertida.toString());
                         System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
-                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
+                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad), capturarFehcaHora());
                         historialDeMonedas.add(monedaConvertida);
                         break;
                     }
-                    case "2" ->{
+                    case "2" -> {
                         cantidad = cant.realizarConversion(in);
                         Moneda monedaConvertida = conversorModeda.escojerMoneda(COP, USD);
                         capturarFehcaHora();
@@ -95,11 +96,11 @@ public class TestConversor {
                         System.out.println(monedaConvertida.toString());
                         System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
-                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
+                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad), capturarFehcaHora());
                         historialDeMonedas.add(monedaConvertida);
                         break;
                     }
-                    case "3" ->{
+                    case "3" -> {
                         cantidad = cant.realizarConversion(in);
                         Moneda monedaConvertida = conversorModeda.escojerMoneda(BOB, BRL);
                         capturarFehcaHora();
@@ -107,25 +108,25 @@ public class TestConversor {
                         System.out.println(monedaConvertida.toString());
                         System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
-                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
+                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad), capturarFehcaHora());
                         historialDeMonedas.add(monedaConvertida);
                         break;
                     }
                     case "4" -> {
                         System.out.println(DIVLINE);
                         System.out.println("| Historial de las monedas consultadas |");
-                        historialDeConversiones.forEach((k,v) -> System.out.println(k +  v.toString()));
-                        //historialDeMonedas.forEach((k,v) -> System.out.println(k +  v.toString()));
-                        //  historialDeCosulta.forEach((x) -> System.out.println(x.toString()));
+                        historialDeConversiones.forEach((k, v) -> System.out.println(k + v.toString()));
+                        // historialDeMonedas.forEach((k,v) -> System.out.println(k + v.toString()));
+                        // historialDeCosulta.forEach((x) -> System.out.println(x.toString()));
                         break;
                     }
-                    case "5" ->{
-                        //conversorModeda.mostrarCodigosAdminitod();
-                        Moneda  mo = conversorModeda.mostrarCodigosAdminitod();
+                    case "5" -> {
+                        // conversorModeda.mostrarCodigosAdminitod();
+                        Moneda mo = conversorModeda.mostrarCodigosAdminitod();
                         mo.codes();
                         break;
                     }
-                    case "6" ->{
+                    case "6" -> {
                         System.out.println("Ingrese la el codigo de la moneda que quiere convertir");
                         String moneda = in.readLine();
                         System.out.println("Ingrese la el codigo de la moneda a la que quiere convertir");
@@ -138,7 +139,7 @@ public class TestConversor {
                         System.out.println(monedaConvertida.toString());
                         System.out.println(monedaConvertida.cantidaMonedas(cantidad));
 
-                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad),capturarFehcaHora());
+                        historialDeConversiones.put(monedaConvertida.cantidaMonedas(cantidad), capturarFehcaHora());
                         historialDeMonedas.add(monedaConvertida);
                         break;
                     }
@@ -155,12 +156,13 @@ public class TestConversor {
                 System.out.println(e.getMessage());
                 System.out.println("Finalizacion de la aplicacion");
             }
-            if("7".equalsIgnoreCase(opcion)){
+            if ("7".equalsIgnoreCase(opcion)) {
                 break;
             }
         }
         System.out.println("Gracias por utilizar el programa Hasta pronto ...");
     }
+
     public static void main(String[] args) {
         TestConversor iniciar = new TestConversor();
         iniciar.run();
